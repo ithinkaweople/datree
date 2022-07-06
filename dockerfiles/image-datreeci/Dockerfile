@@ -1,4 +1,4 @@
-FROM alpine:3.14 AS builder
+FROM alpine:3.15 AS builder
 
 RUN apk add --no-cache curl bash unzip openssl git
 
@@ -10,7 +10,7 @@ RUN mkdir /bin/plugintemp && cp -r $HOME/.local/share/helm/plugins/ /bin/plugint
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
-FROM alpine:3.14
+FROM alpine:3.15
 RUN apk add --no-cache bash
 
 COPY --from=builder /usr/local/bin/datree /usr/local/bin/datree
