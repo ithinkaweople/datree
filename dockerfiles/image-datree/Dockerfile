@@ -8,6 +8,6 @@ RUN curl --silent "https://api.github.com/repos/datreeio/datree/releases/latest"
 RUN go get -d -v ./...
 RUN go build -tags main -ldflags="-extldflags '-static' -X github.com/datreeio/datree/cmd.CliVersion=$(cat cli-version)" -v
 
-FROM alpine:3.14
+FROM alpine:3.16
 COPY --from=builder /go/src/app/datree /
 ENTRYPOINT ["/datree"]
